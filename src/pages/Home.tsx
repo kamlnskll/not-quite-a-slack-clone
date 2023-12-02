@@ -5,24 +5,19 @@ import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
 const Home = () => {
 
 const [mobileOpened, setMobileOpened] = useState(false);
-const [desktopOpened, setDesktopOpened] = useState(false);
+const [desktopOpened, setDesktopOpened] = useState(true);
 
         return (
             <AppShell
-              header={{ height: 60 }}
+            
               navbar={{
-                width: 300,
+                width: 200,
                 breakpoint: 'sm',
                 collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
               }}
               padding="md"
             >
-              <AppShell.Header>
-                <Group h="100%" px="md">
- 
-            
-                </Group>
-              </AppShell.Header>
+          
               <AppShell.Navbar p="md">
                 Navbar
                 {Array(15)
