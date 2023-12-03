@@ -1,8 +1,11 @@
 import React from 'react'
+import { AppShell } from '@mantine/core';
 
 const Register = () => {
   return (
-    <div>Register</div>
+    <AppShell>
+    <AppShell.Main>REGISTER HERE</AppShell.Main>
+    </AppShell>
   )
 }
 
