@@ -1,9 +1,23 @@
 import React from 'react'
 import { AppShell, Text, Container, Button, TextInput, PasswordInput, Title, Paper, Group, Anchor, Checkbox } from '@mantine/core';
 import {useForm} from '@mantine/form'
+import { loginUser } from '../functions/auth';
 
 
 const Login = () => {
+
+  const form = useForm({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+    },
+  });
+
+
   return (
     <AppShell>
     <AppShell.Main>
@@ -17,14 +31,21 @@ const Login = () => {
           Sign up here
         </Anchor>
         </Text>
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <TextInput label="Email" placeholder="Your email" required />
-        <PasswordInput label="Password" placeholder="Your password" required mt="md" />
+        <form onSubmit={form.onSubmit((values) => {
+          loginUser(values.email, values.password)
+          console.log(values)
         
-        <Button fullWidth mt="xl">
+        })}
+          
+          >
+      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <TextInput label="Email" placeholder="Your email" {...form.getInputProps('email')} required />
+        <PasswordInput label="Password" placeholder="Your password" {...form.getInputProps('password')} required mt="md" />
+        <Button fullWidth type='submit' mt="xl">
           Sign in
         </Button>
       </Paper>
+      </form>
       </Container>
     </AppShell.Main>
     </AppShell>

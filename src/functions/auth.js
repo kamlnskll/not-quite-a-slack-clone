@@ -1,35 +1,34 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
-const auth = getAuth();
+export const registerUser = async (email, password) => {
 
-export const registerUser = (email, password) => {
-  
-  // May need to replace auth here as parameter and pass it in the page instead
-  createUserWithEmailAndPassword(auth, email, password)
+  await createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    // Signed up 
     const user = userCredential.user;
-    // ...
+    console.log('User created successfully', user)
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // ..
+    console.log('Error:', errorCode, ':', errorMessage)
   });
 
 }
 
-  export const loginUser = (email, password) => {
+  export const loginUser = async (email, password) => {
 
-    signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
+      console.log('User signed in', user)
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log('Error:', errorCode, ':', errorMessage)
     });
 
   }
