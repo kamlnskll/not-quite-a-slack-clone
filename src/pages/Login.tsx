@@ -9,7 +9,7 @@ const Login = () => {
     <AppShell.Main>
       <Container size={640} my={120}>
       <Title ta="center">
-        Welcome!
+        Welcome back!
       </Title>
       <Text c="dimmed" size="sm" ta="center" mt={5}>
         Don't have an account?{' '}
