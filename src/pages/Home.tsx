@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
+import { AppShell, Burger, Group, Skeleton, Container, Button } from '@mantine/core';
 
 
 const Home = () => {
@@ -26,7 +26,10 @@ const [desktopOpened, setDesktopOpened] = useState(true);
                     <Skeleton key={index} h={28} mt="sm" animate={false} />
                   ))}
               </AppShell.Navbar>
-              <AppShell.Main>Main</AppShell.Main>
+              <AppShell.Main>
+                <Container>
+                  <Burger opened={desktopOpened} onClick={() => setDesktopOpened(!desktopOpened)}/>
+                  </Container></AppShell.Main>
             </AppShell>
           );
       
