@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
-import { AppShell, Burger, Group, Skeleton, Container, Button } from '@mantine/core';
+import { AppShell, Burger, Group, Skeleton, Container, Stack, Button, Text, Title } from '@mantine/core';
+import { logOut } from '../functions/auth';
 
 
 const Home = () => {
 
 const [mobileOpened, setMobileOpened] = useState(false);
-const [desktopOpened, setDesktopOpened] = useState(true);
+const [desktopOpened, setDesktopOpened] = useState(false);
 
         return (
             <AppShell
@@ -25,10 +26,16 @@ const [desktopOpened, setDesktopOpened] = useState(true);
                   .map((_, index) => (
                     <Skeleton key={index} h={28} mt="sm" animate={false} />
                   ))}
+                  <Stack justify="flex-end" h={400}>
+                    <Button color='yellow' type='button' w={100} onClick={() => logOut()}>Log Out</Button>
+                  </Stack>
               </AppShell.Navbar>
               <AppShell.Main>
                 <Container>
+                  <Group justify='flex-end'>
                   <Burger opened={desktopOpened} onClick={() => setDesktopOpened(!desktopOpened)}/>
+                  </Group>
+                  <Title>Your Profile</Title>
                   </Container></AppShell.Main>
             </AppShell>
           );
