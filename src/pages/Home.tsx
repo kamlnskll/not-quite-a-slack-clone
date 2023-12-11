@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { AppShell, Burger, Group, Skeleton, Container, Stack, Button, Text, Title } from '@mantine/core';
 import { logOut } from '../functions/auth';
+import { getUserWorkspaces } from '../functions/workspace'
 import NewWorkspace from '../components/NewWorkspace';
 
 
@@ -23,6 +24,7 @@ const [desktopOpened, setDesktopOpened] = useState(false);
               <AppShell.Navbar p="md">
                 <NewWorkspace />
                 <Title size='sm'>Workspaces</Title>
+                <Button onClick={getUserWorkspaces}></Button>
                 {Array(5)
                   .fill(0)
                   .map((_, index) => (

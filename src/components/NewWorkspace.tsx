@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {ActionIcon, Modal, Title, Text, Input, Button, Group, TextInput} from '@mantine/core'
 import {useDisclosure} from '@mantine/hooks'
-import { createWorkspace, createWorkspaceMember } from '../functions/workspace'
+import { createWorkspace, createWorkspaceMember, getUserWorkspaces } from '../functions/workspace'
 
 const NewWorkspace = () => {
 
