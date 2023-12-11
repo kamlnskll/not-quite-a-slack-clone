@@ -11,7 +11,9 @@ const NewWorkspace = () => {
     
     const workspaceCreationHandler = async (workspaceName: string) => {
         await createWorkspace(workspaceName).then((res) => {
-            console.log(res)
+            if(res){
+              createWorkspaceMember(res, 3)
+            }
             close()
             // createWorkspaceMember(res?.id, 3)
         }).catch((err) => console.log('Error while creating workspace', err))

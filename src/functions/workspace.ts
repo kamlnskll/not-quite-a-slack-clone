@@ -1,8 +1,9 @@
 // Functions related to workspaces will be found here including creating them, leaving etc.
 import {useState} from 'react'
 import { db, auth } from "../firebase"
-import { setDoc, collection, serverTimestamp, doc, addDoc } from "@firebase/firestore"
-import { useAuth } from './useAuth'
+import { setDoc, collection, serverTimestamp, doc, addDoc, query } from "@firebase/firestore"
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 
@@ -17,12 +18,20 @@ export const createWorkspace = async (workspaceName: string) => {
 } 
 
 try {
-await addDoc(workspaceCollection, {
+    const workspace_id = uuidv4()
+    const workspaceRef = doc(workspaceCollection, workspace_id)
+
+
+await setDoc(workspaceRef, {
+    workspace_id: workspace_id,
     workspaceName: workspaceName,
     //@ts-ignore
-    creatorId: auth.currentUser?.uid,
+    creator_id: auth.currentUser?.uid,
     createdAt: serverTimestamp()
-}).then((res) => console.log('Workspace successfully created', res)).catch((err) => console.log('Error when adding workspace to Firestore', err))
+})
+
+console.log('Workspace created successfully')
+return workspace_id
 
 } catch(err) {
     console.log('Something went wrong when creating Workspace', err)
@@ -39,5 +48,16 @@ await addDoc(workspaceMembersCollection, {
 workspaceId: workspaceId,
 userId: auth.currentUser?.uid,
 userType: userType
-}).then((res) => console.log(res)).catch((err) => console.log('Error when creating workspace members', err))
+}).then((res) => console.log('Success creating workspace member', res)).catch((err) => console.log('Error when creating workspace members', err))
+}
+
+export const getUserWorkspaces = async () => {
+if(!auth.currentUser){
+   console.log('Must be logged in to get workspaces')
+   return 
+}
+
+const workspaceQuery = query(collection(db, "workspace"))
+
+
 }

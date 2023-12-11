@@ -21,9 +21,9 @@ const [desktopOpened, setDesktopOpened] = useState(false);
             >
           
               <AppShell.Navbar p="md">
-                Navbar
                 <NewWorkspace />
-                {Array(15)
+                <Title size='sm'>Workspaces</Title>
+                {Array(5)
                   .fill(0)
                   .map((_, index) => (
                     <Skeleton key={index} h={28} mt="sm" animate={false} />
