@@ -60,11 +60,14 @@ if(!auth.currentUser){
 try{
     const workspaceQuery = query(workspaceMembersCollection, where('userId', '==', auth.currentUser?.uid))
     const querySnapshot = await getDocs(workspaceQuery)
+    const userWorkspaces = <any>[]
+
     querySnapshot.forEach((doc) => {
         const workspaceData = doc.data()
-        console.log(workspaceData)
-        return workspaceData
+       userWorkspaces.push(workspaceData)
     })
+
+    return userWorkspaces
 } catch {
     console.log('Error getting user workspaces')
 }
@@ -83,7 +86,7 @@ try{
     const docRef = doc(db, 'workspace', workspace_id)
     const docSnapshot = await getDoc(docRef)
     if(docSnapshot.exists()){
-        console.log('Doc Data:', docSnapshot.data())
+        return docSnapshot.data()
     } else {
         console.log('No such document!')
     }

@@ -1,18 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { fetchWorkspace } from '../functions/workspace'
-import { Text } from '@mantine/core'
+import { Paper, Text } from '@mantine/core'
 
-const WorkspaceCard = (workspace_id: string, name: string) => {
+const WorkspaceCard = (workspace: any) => {
+
+const [data, setData] = useState<any>()
 
 useEffect(() => {
-    fetchWorkspace(workspace_id)
+  // console.log(workspace.workspace)
+  fetchWorkspace(workspace.workspace.workspaceId).then((res) => setData(res))
+  
+
 }, [])
 
 
   return (
     <div>
-        <Text>{workspace_id}</Text>
-        <Text>{name}</Text>
+        <Paper my='xs'>
+        <Text size='sm'>{data.workspaceName}</Text>
+        </Paper>
     </div>
   )
 }
