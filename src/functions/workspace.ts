@@ -1,7 +1,7 @@
 // Functions related to workspaces will be found here including creating them, leaving etc.
 import {useState} from 'react'
 import { db, auth } from "../firebase"
-import { setDoc, where, collection, serverTimestamp, doc, addDoc, query, getDocs } from "@firebase/firestore"
+import { setDoc, where, collection, serverTimestamp, doc, addDoc, query, getDocs, getDoc } from "@firebase/firestore"
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -60,14 +60,36 @@ if(!auth.currentUser){
 try{
     const workspaceQuery = query(workspaceMembersCollection, where('userId', '==', auth.currentUser?.uid))
     const querySnapshot = await getDocs(workspaceQuery)
-    return querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc) => {
         const workspaceData = doc.data()
         console.log(workspaceData)
+        return workspaceData
     })
 } catch {
     console.log('Error getting user workspaces')
 }
 // Get the workspace id where the user is a member
 // Get the info of those workspaces
+
+}
+
+export const fetchWorkspace = async (workspace_id: string) => {
+if(!auth.currentUser){
+    console.log('Must be a user to get workspace')
+    return
+}
+
+try{
+    const docRef = doc(db, 'workspace', workspace_id)
+    const docSnapshot = await getDoc(docRef)
+    if(docSnapshot.exists()){
+        console.log('Doc Data:', docSnapshot.data())
+    } else {
+        console.log('No such document!')
+    }
+}
+catch{
+    console.log('Error while fetching workspace')
+}
 
 }
