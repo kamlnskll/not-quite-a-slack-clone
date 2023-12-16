@@ -16,6 +16,7 @@ useEffect(() => {
   getUserWorkspaces().then((res) => {
     setUserWorkspaces(res)
     console.log(res)})
+  
 }, [])
 
         return (
@@ -32,7 +33,7 @@ useEffect(() => {
               <AppShell.Navbar p="md">
                 <NewWorkspace />
                 <Title size='sm'>Workspaces</Title>
-                {userWorkspaces.map((workspace) => (
+                {userWorkspaces?.map((workspace) => (
                   <WorkspaceCard workspace={workspace} />
                 ))}
                   <Stack justify="flex-end" h={400}>

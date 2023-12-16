@@ -17,7 +17,7 @@ useEffect(() => {
   return (
     <div>
         <Paper withBorder={true} p='xs' my='xs' radius={'md'}>
-        <Text size='xs'>{data.workspaceName}</Text>
+        {/* <Text size='xs'>{data.workspaceName}</Text> */}
         </Paper>
     </div>
   )
