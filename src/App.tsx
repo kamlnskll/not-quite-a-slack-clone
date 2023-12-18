@@ -1,18 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Routes, Route, BrowserRouter} from 'react-router-dom'
 import { useAuth } from './functions/useAuth';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import { WorkspaceContext } from './context/WorkspaceContext';
 
 
 function App() {
 
   const { user } = useAuth()
+  const [focusedWorkspace, setFocusedWorkspace] = useState({})
+  // <WorkspaceContext.Provider value={{focusedWorkspace, setFocusedWorkspace}}>
 
-
+  // </WorkspaceContext.Provider>
   return (
 <>
+
 <BrowserRouter>
 <Routes>
   <Route path='/' element={user ? <Home /> : <Login />}/>

@@ -86,7 +86,8 @@ try{
     const docRef = doc(db, 'workspace', workspace_id)
     const docSnapshot = await getDoc(docRef)
     if(docSnapshot.exists()){
-        return docSnapshot.data()
+        const data = docSnapshot.data()
+        return data
     } else {
         console.log('No such document!')
     }
@@ -95,4 +96,18 @@ catch{
     console.log('Error while fetching workspace')
 }
 
+}
+
+export const fetchWorkspaceUsers = async () => {
+    if(!auth.currentUser){
+        console.log('Must be logged in to get workspaces')
+        return 
+     }
+     
+}
+
+
+export const workspaceInvite = async () => {
+
+    
 }
