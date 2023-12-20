@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { fetchWorkspace } from '../functions/workspace'
 import { Paper, Text } from '@mantine/core'
+import { WorkspaceContext } from '../context/WorkspaceContext'
 
 const WorkspaceCard = (workspace: any) => {
 
@@ -17,7 +18,9 @@ useEffect(() => {
 
   return (
     <div>
-        <Paper withBorder={true} onClick={() => console.log(data)}p='xs' my='xs' radius={'md'}>
+        <Paper withBorder={true} onClick={() => 
+          { 
+            console.log(data)}}p='xs' my='xs' radius={'md'}>
         <Text size='xs'>{data?.workspaceName}</Text>
         </Paper>
     </div>

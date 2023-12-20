@@ -11,12 +11,10 @@ function App() {
 
   const { user } = useAuth()
   const [focusedWorkspace, setFocusedWorkspace] = useState({})
-  // <WorkspaceContext.Provider value={{focusedWorkspace, setFocusedWorkspace}}>
 
-  // </WorkspaceContext.Provider>
   return (
 <>
-
+<WorkspaceContext.Provider value={{focusedWorkspace, setFocusedWorkspace}}>
 <BrowserRouter>
 <Routes>
   <Route path='/' element={user ? <Home /> : <Login />}/>
@@ -24,6 +22,7 @@ function App() {
   <Route path='/register'  element={!user ? <Register /> : <Home />}/>
 </Routes>
 </BrowserRouter>
+</WorkspaceContext.Provider>
 
 </>
 
