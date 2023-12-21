@@ -14,7 +14,7 @@ function App() {
 
   return (
 <>
-<WorkspaceContext.Provider value={{focusedWorkspace, setFocusedWorkspace}}>
+<WorkspaceContext.Provider value={{ focusedWorkspace, setFocusedWorkspace }}>
 <BrowserRouter>
 <Routes>
   <Route path='/' element={user ? <Home /> : <Login />}/>

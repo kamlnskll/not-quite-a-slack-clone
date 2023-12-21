@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {ActionIcon, Modal, Title, Text, Input, Button, Group, TextInput} from '@mantine/core'
 import {useDisclosure} from '@mantine/hooks'
 import { createWorkspace, createWorkspaceMember } from '../functions/workspace'
+import { IconCubePlus } from '@tabler/icons-react'
 
 const NewWorkspace = () => {
 
@@ -21,7 +22,9 @@ const NewWorkspace = () => {
 
   return (
     <div>
-        <ActionIcon onClick={open}/>
+        <ActionIcon size='lg'>
+        <IconCubePlus onClick={open} />
+        </ActionIcon>
         <Modal opened={opened} onClose={close}>
         <Title size='sm'>New Workspace</Title>
         <Input.Wrapper label="Name" my='sm'>

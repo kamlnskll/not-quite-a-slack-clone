@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { fetchWorkspaceUsers } from '../functions/workspace'
+import { WorkspaceContext } from '../context/WorkspaceContext'
+import { Title } from '@mantine/core'
 
 type Props = {
     workspace_id: string
 }
-const Workspace = ({workspace_id}: Props) => {
+const Workspace = () => {
+
+  //@ts-ignore
+  const { focusedWorkspace } = useContext(WorkspaceContext)
+
 
 const workspaceDataHandler = async () => {
-    // This handler will handle
-    //
+if(focusedWorkspace && focusedWorkspace.workspace_id){
+  fetchWorkspaceUsers(focusedWorkspace.workspace_id).then((res) => console.log(res))
+
+}
 // Fetch workspace data
 // Fetch workspace members
-fetchWorkspaceUsers(workspace_id).then((res) => console.log(res))
 
 // Fetch workspace channels
 // Fetch messages in each workspace channel
@@ -23,7 +30,9 @@ fetchWorkspaceUsers(workspace_id).then((res) => console.log(res))
 
 
   return (
-    <div>Workspace</div>
+    <div>
+      <Title>{focusedWorkspace.workspaceName}</Title>
+    </div>
   )
 }
 

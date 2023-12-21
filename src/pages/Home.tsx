@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { AppShell, Burger, Group, Skeleton, Container, Stack, Button, Text, Title } from '@mantine/core';
 import { logOut } from '../functions/auth';
 import { getUserWorkspaces } from '../functions/workspace'
 import NewWorkspace from '../components/NewWorkspace';
 import WorkspaceCard from '../components/WorkspaceCard';
+import { WorkspaceContext } from '../context/WorkspaceContext';
+import Workspace from '../components/Workspace';
+
 
 
 const Home = () => {
@@ -11,6 +14,8 @@ const Home = () => {
 const [mobileOpened, setMobileOpened] = useState(false);
 const [desktopOpened, setDesktopOpened] = useState(false);
 const [userWorkspaces, setUserWorkspaces] = useState([])
+//@ts-ignore
+const { focusedWorkspace } = useContext(WorkspaceContext)
 
 useEffect(() => {
   getUserWorkspaces().then((res) => {
@@ -32,7 +37,7 @@ useEffect(() => {
           
               <AppShell.Navbar p="md">
                 <NewWorkspace />
-                <Title size='sm'>Workspaces</Title>
+                <Title size='sm' mt='lg'>Workspaces</Title>
                 {userWorkspaces?.map((workspace) => (
                   <WorkspaceCard workspace={workspace} />
                 ))}
@@ -45,7 +50,12 @@ useEffect(() => {
                   <Group justify='flex-end'>
                   <Burger opened={desktopOpened} onClick={() => setDesktopOpened(!desktopOpened)}/>
                   </Group>
+                  { focusedWorkspace ? 
+                  <Workspace />
+                  :
                   <Title>Your Profile</Title>
+
+                  }
                   </Container></AppShell.Main>
             </AppShell>
           );

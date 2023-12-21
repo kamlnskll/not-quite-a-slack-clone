@@ -6,6 +6,9 @@ import { WorkspaceContext } from '../context/WorkspaceContext'
 const WorkspaceCard = (workspace: any) => {
 
 const [data, setData] = useState<any>()
+//@ts-ignore
+const { focusedWorkspace, setFocusedWorkspace } = useContext(WorkspaceContext)
+
 
 useEffect(() => {
   // console.log(workspace.workspace)
@@ -20,7 +23,8 @@ useEffect(() => {
     <div>
         <Paper withBorder={true} onClick={() => 
           { 
-            console.log(data)}}p='xs' my='xs' radius={'md'}>
+            setFocusedWorkspace(data)
+            console.log(focusedWorkspace)}}p='xs' my='xs' radius={'md'}>
         <Text size='xs'>{data?.workspaceName}</Text>
         </Paper>
     </div>
