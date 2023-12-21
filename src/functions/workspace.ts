@@ -98,16 +98,53 @@ catch{
 
 }
 
-export const fetchWorkspaceUsers = async () => {
+export const fetchWorkspaceUsers = async (workspace_id: string) => {
     if(!auth.currentUser){
         console.log('Must be logged in to get workspaces')
         return 
      }
-     
+     try{
+        const workspaceQuery = query(workspaceMembersCollection, where('workspaceId', '==', workspace_id))
+        const querySnapshot = await getDocs(workspaceQuery)
+        const workspaceMembers = <any>[]
+    
+        querySnapshot.forEach((doc) => {
+            const workspaceData = doc.data()
+            workspaceMembers.push(workspaceData)
+        })
+    
+        return workspaceMembers
+    } catch {
+        console.log('Error getting user workspaces')
+    }
 }
 
 
 export const workspaceInvite = async () => {
 
     
+}
+
+export const fetchWorkspaceChannels = async (workspace_id: string) => {
+    if(!auth.currentUser){
+        console.log('Must be logged in to get workspaces')
+        return 
+     }
+     try{
+      
+    } catch {
+        console.log('Error getting channels for workspace', workspace_id)
+    }
+}
+
+export const fetchWorkspaceChannelMessages = async (workspace_id: string) => {
+    if(!auth.currentUser){
+        console.log('Must be logged in to get workspaces')
+        return 
+     }
+     try{
+   
+    } catch {
+        console.log('Error getting user workspaces')
+    }
 }

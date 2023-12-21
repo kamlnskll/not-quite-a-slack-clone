@@ -1,4 +1,5 @@
 import React from 'react'
+import { fetchWorkspaceUsers } from '../functions/workspace'
 
 type Props = {
     workspace_id: string
@@ -10,6 +11,7 @@ const workspaceDataHandler = async () => {
     //
 // Fetch workspace data
 // Fetch workspace members
+fetchWorkspaceUsers(workspace_id).then((res) => console.log(res))
 
 // Fetch workspace channels
 // Fetch messages in each workspace channel
