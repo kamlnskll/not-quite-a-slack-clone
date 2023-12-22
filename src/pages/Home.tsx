@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { AppShell, Burger, Group, Skeleton, Container, Stack, Button, Text, Title } from '@mantine/core';
+import { AppShell, Burger, Group, Skeleton, Container, Stack, Button, Text, Title, Paper } from '@mantine/core';
 import { logOut } from '../functions/auth';
 import { getUserWorkspaces } from '../functions/workspace'
 import NewWorkspace from '../components/NewWorkspace';
@@ -16,7 +16,7 @@ const [mobileOpened, setMobileOpened] = useState(false);
 const [desktopOpened, setDesktopOpened] = useState(false);
 const [userWorkspaces, setUserWorkspaces] = useState([])
 //@ts-ignore
-const { focusedWorkspace } = useContext(WorkspaceContext)
+const { focusedWorkspace, setFocusedWorkspace } = useContext(WorkspaceContext)
 
 useEffect(() => {
   getUserWorkspaces().then((res) => {
@@ -37,7 +37,10 @@ useEffect(() => {
             >
           
               <AppShell.Navbar p="md">
-                <Group>
+              <Paper withBorder={true} onClick={() => 
+          {setFocusedWorkspace({})}} p='xs' my='xs' radius={'md'}>
+        <Text size='xs'>Profile?</Text>
+        </Paper>                <Group>
                 <Title size='sm' >Workspaces</Title>
                 <NewWorkspace />
                 </Group>
