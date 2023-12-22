@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
 import { fetchWorkspaceUsers } from '../functions/workspace'
 import { WorkspaceContext } from '../context/WorkspaceContext'
-import { Title } from '@mantine/core'
+import { Title, Group, Container } from '@mantine/core'
+import NewChannel from './NewChannel'
 
-type Props = {
-    workspace_id: string
-}
+
 const Workspace = () => {
 
   //@ts-ignore
@@ -30,9 +29,12 @@ if(focusedWorkspace && focusedWorkspace.workspace_id){
 
 
   return (
-    <div>
+    <Container>
+      <Group>
       <Title>{focusedWorkspace.workspaceName}</Title>
-    </div>
+      <NewChannel />
+      </Group>
+    </Container>
   )
 }
 
