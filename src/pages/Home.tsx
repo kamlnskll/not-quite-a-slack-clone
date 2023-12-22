@@ -6,6 +6,7 @@ import NewWorkspace from '../components/NewWorkspace';
 import WorkspaceCard from '../components/WorkspaceCard';
 import { WorkspaceContext } from '../context/WorkspaceContext';
 import Workspace from '../components/Workspace';
+import Profile from '../components/Profile';
 
 
 
@@ -36,8 +37,10 @@ useEffect(() => {
             >
           
               <AppShell.Navbar p="md">
+                <Group>
+                <Title size='sm' >Workspaces</Title>
                 <NewWorkspace />
-                <Title size='sm' mt='lg'>Workspaces</Title>
+                </Group>
                 {userWorkspaces?.map((workspace) => (
                   <WorkspaceCard workspace={workspace} />
                 ))}
@@ -50,10 +53,11 @@ useEffect(() => {
                   <Group justify='flex-end'>
                   <Burger opened={desktopOpened} onClick={() => setDesktopOpened(!desktopOpened)}/>
                   </Group>
-                  { focusedWorkspace ? 
-                  <Workspace />
+                  { Object.keys(focusedWorkspace).length === 0 && focusedWorkspace.constructor === Object ?
+                  <Profile />
+
                   :
-                  <Title>Your Profile</Title>
+                  <Workspace />
 
                   }
                   </Container></AppShell.Main>

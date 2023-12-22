@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {ActionIcon, Modal, Title, Text, Input, Button, Group, TextInput} from '@mantine/core'
+import {ActionIcon, Modal, Title, Text, Input, Button, Group, TextInput, Container} from '@mantine/core'
 import {useDisclosure} from '@mantine/hooks'
 import { createWorkspace, createWorkspaceMember } from '../functions/workspace'
 import { IconCubePlus } from '@tabler/icons-react'
@@ -21,9 +21,9 @@ const NewWorkspace = () => {
     }
 
   return (
-    <div>
-        <ActionIcon size='lg'>
-        <IconCubePlus onClick={open} />
+    <Container size='md'>
+        <ActionIcon size='sm'>
+        <IconCubePlus onClick={open}/>
         </ActionIcon>
         <Modal opened={opened} onClose={close}>
         <Title size='sm'>New Workspace</Title>
@@ -35,7 +35,8 @@ const NewWorkspace = () => {
     <Button color='orange'>Cancel</Button>
     </Group>
         </Modal>
-    </div>
+    </Container>
+
   )
 }
 
