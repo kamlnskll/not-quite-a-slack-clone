@@ -3,6 +3,7 @@ import { WorkspaceContext } from '../context/WorkspaceContext'
 import { Title, Group, Container } from '@mantine/core'
 import NewChannel from './NewChannel'
 import { fetchChannelsInWorkspace, fetchWorkspaceChannelMessages } from '../functions/channel'
+import ChannelListItem from './ChannelListItem'
 
 
 const Workspace = () => {
@@ -35,6 +36,12 @@ useEffect(() => {
       <Title onClick={() => console.log(channels)}>{focusedWorkspace.workspaceName}</Title>
       <NewChannel />
       </Group>
+      <Container>
+        {/* @ts-ignore */}
+        {channels.map((channel) => (
+        <ChannelListItem channel={channel}/>
+        ))}
+      </Container>
     </Container>
   )
 }
