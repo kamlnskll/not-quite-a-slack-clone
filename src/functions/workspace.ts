@@ -125,26 +125,4 @@ export const workspaceInvite = async () => {
     
 }
 
-export const fetchWorkspaceChannels = async (workspace_id: string) => {
-    if(!auth.currentUser){
-        console.log('Must be logged in to get workspaces')
-        return 
-     }
-     try{
-      
-    } catch {
-        console.log('Error getting channels for workspace', workspace_id)
-    }
-}
 
-export const fetchWorkspaceChannelMessages = async (workspace_id: string) => {
-    if(!auth.currentUser){
-        console.log('Must be logged in to get workspaces')
-        return 
-     }
-     try{
-   
-    } catch {
-        console.log('Error getting user workspaces')
-    }
-}

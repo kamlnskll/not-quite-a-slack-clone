@@ -53,3 +53,41 @@ try{
 
 
 }
+
+export const fetchChannelsInWorkspace = async (workspace_id: string) => {
+
+    if(!auth.currentUser){
+        console.log('Must be logged in to fetch channels')
+        return
+    }
+
+    try{
+        const channelQuery = query(channelCollection, where("workspace_id", '==', workspace_id))
+        const channelQuerySnapshot = await getDocs(channelQuery)
+        const workspaceChannels = <any>[]
+        
+        
+        channelQuerySnapshot.forEach((doc) => {
+            const channelData = doc.data()
+            workspaceChannels.push(channelData)
+        })
+        
+        return workspaceChannels
+    } catch (err) {
+        console.log(err)
+    
+    }
+
+}
+
+export const fetchWorkspaceChannelMessages = async (workspace_id: string) => {
+    if(!auth.currentUser){
+        console.log('Must be logged in to get workspaces')
+        return 
+     }
+     try{
+   
+    } catch {
+        console.log('Error getting user workspaces')
+    }
+}
