@@ -8,7 +8,7 @@ type Props = {
 
 const ChannelListItem = ({channel}: Props) => {
   return (
-    <Paper withBorder={true} w='md'>
+    <Paper withBorder={true}>
     <Title size='xs'>{channel.channelName}</Title>
     </Paper>
   )
