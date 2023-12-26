@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Container, Paper, Title } from '@mantine/core'
 import Chat from './Chat'
-import { fetchMessagesInChannel } from '../functions/channel'
+import { listenForMessagesInChannel } from '../functions/channel'
 import { ChannelContext } from '../context/ChannelContext'
 
 
@@ -17,7 +17,10 @@ const [channelMessages, setChannelMessages] = useState([])
 const { focusedChannel } = useContext(ChannelContext)
 
 const channelDataHandler = async () => {
-fetchMessagesInChannel(channel.channel_id).then((res) => console.log('Messages in channel fetched', res)).catch((err) => console.log(err))
+// const listenForMessagesInChannel = (channel.channel_id, (messages: any) => {
+// console.log(messages)
+// })
+// // .then((res: Response) => console.log('Messages in channel fetched', res)).catch((err: Error) => console.log(err))
 
 
 }

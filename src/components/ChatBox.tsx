@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Textarea, Container, Paper, Input, Group, ActionIcon, Grid } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { IconMessage2Plus } from '@tabler/icons-react'
+import { newChannelMessage } from '../functions/channel'
+import { ChannelContext } from '../context/ChannelContext'
 
 const ChatBox = () => {
 
 const [value, setValue] = useState('')
+const { focusedChannel } = useContext<any>(ChannelContext)
 
 const form = useForm({
   initialValues: {
@@ -19,7 +22,7 @@ const form = useForm({
   return (
     <Container>
   <form onSubmit={form.onSubmit((values) => {
-    console.log(values.message)
+    newChannelMessage(focusedChannel.channel_id, values.message).then((res) => console.log(res)).catch((err) => console.log(err))
     form.reset()
     })}>
 <Grid>

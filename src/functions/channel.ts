@@ -1,6 +1,5 @@
-import {useState} from 'react'
 import { db, auth } from "../firebase"
-import { setDoc, where, collection, serverTimestamp, onSnapshot, doc, addDoc, query, getDocs, getDoc } from "@firebase/firestore"
+import { setDoc, where, collection, serverTimestamp, onSnapshot, doc, query, getDocs } from "@firebase/firestore"
 import { v4 as uuidv4 } from 'uuid';
 
 const channelCollection = collection(db, 'channels')
@@ -36,8 +35,14 @@ export const newChannel = async (channelName: string, workspace_id: string) => {
 }
 
 export const newChannelMessage = async (channel_id: string, messageBody: string) => {
+
+    if(!auth.currentUser){
+        console.log('Must be logged in to add message to channel')
+        return
+    }
+
 const channel_message_id = uuidv4()
-const channelMessageRef = doc(channelCollection, channel_message_id)
+const channelMessageRef = doc(channelMessageCollection, channel_message_id)
 
 try{
     await setDoc(channelMessageRef, {
@@ -45,8 +50,8 @@ try{
         channel_id: channel_id,
         messageBody: messageBody,
         sender_id: auth.currentUser?.uid,
+        createdAt: serverTimestamp()
     })
-
 } catch (err) {
     console.log('Error while creating new message in Channel', err)
 }
@@ -80,7 +85,7 @@ export const fetchChannelsInWorkspace = async (workspace_id: string) => {
 
 }
 
-export const ListenForMessagesInChannel = async (channel_id: string, callback: (messages: any[]) => void) => {
+export const listenForMessagesInChannel = async (channel_id: string, callback: (messages: any[]) => void) => {
     if(!auth.currentUser){
         console.log('Must be logged in to get workspaces')
         return 
