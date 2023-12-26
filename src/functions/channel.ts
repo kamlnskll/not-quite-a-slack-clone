@@ -87,6 +87,7 @@ export const fetchChannelsInWorkspace = async (workspace_id: string) => {
 
 export const initialFetchForMessagesInChannel = async (channel_id: string) => {
     // Meant to display the inital messages in the channel. Used in conjunction with the listener function below.
+    
     if(!auth.currentUser){
         console.log('Must be logged in to get workspaces')
         return 
@@ -118,7 +119,6 @@ export const listenForMessagesInChannel = async (channel_id: string, callback: (
      }
      try{
         const messageQuery = query(channelMessageCollection, where("channel_id", '==', channel_id))
-        // const channelMessagesSnapshot = await onSnapshot(messageQuery)
         const unsubscribe = onSnapshot(messageQuery, (snapshot) => {
             const messagesInChannel = <any>[]
             snapshot.forEach((doc) => {
@@ -130,15 +130,6 @@ export const listenForMessagesInChannel = async (channel_id: string, callback: (
         })
 
         return unsubscribe
-
-        // const messagesInChannel = <any>
-        // []
-
-// channelMessagesSnapshot.forEach((doc) => {
-//     const messageData = doc.data()
-//     messagesInChannel.push(messageData)
-// })
-// return messagesInChannel
 
    
     } catch {
