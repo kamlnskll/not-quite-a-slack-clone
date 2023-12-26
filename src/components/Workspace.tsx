@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { WorkspaceContext } from '../context/WorkspaceContext'
-import { Title, Group, Container } from '@mantine/core'
+import { Title, Group, Container, Text } from '@mantine/core'
 import NewChannel from './NewChannel'
-import { fetchChannelsInWorkspace, fetchWorkspaceChannelMessages } from '../functions/channel'
+import { fetchChannelsInWorkspace  } from '../functions/channel'
 import ChannelListItem from './ChannelListItem'
 import { ChannelContext } from '../context/ChannelContext'
 import ChatBox from './ChatBox'
@@ -22,28 +22,26 @@ const workspaceDataHandler = async () => {
 if(Object.hasOwn(focusedWorkspace, 'workspace_id')){
   fetchChannelsInWorkspace(focusedWorkspace.workspace_id).then((res: any) => setChannels(res)).then(() => {
   }).catch((err) => console.warn(err))
-  // fetchWorkspaceUsers(focusedWorkspace.workspace_id).then((res) => console.log(res))
 
 }
 
     
 } 
 
-const channelHandler = async () => {
-if(Object.hasOwn(focusedWorkspace, 'workspace_id') && Object.hasOwn(focusedChannel, 'channel_id')){
-// Once a channel is selected, fetch the channel data
+// const channelHandler = async () => {
+// if(Object.hasOwn(focusedWorkspace, 'workspace_id') && Object.hasOwn(focusedChannel, 'channel_id')){
+// // Select channel. 
+// // Pass channel data with focusedChannel
+// // Fetch messages for that channel
 
-}
+// }
 
-}
+// }
 
 useEffect(() => {
   workspaceDataHandler()
 }, [focusedWorkspace])
 
-useEffect(() => {
-  channelHandler()
-}, [focusedChannel])
 
 
   return (
@@ -54,12 +52,17 @@ useEffect(() => {
       </Group>
       <Container>
         {/* @ts-ignore */}
-        {channels.map((channel) => (
-        <ChannelListItem channel={channel}/>
+        {channels.map((channelListItem) => (
+        <ChannelListItem channel={channelListItem}/>
         ))}
       </Container>
       <Container>
-        
+        { Object.keys(focusedChannel).length === 0 ? (
+null
+        ) : (
+        <Channel channel={focusedChannel}/>
+
+        )}
       </Container>
     </Container>
   )

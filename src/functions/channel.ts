@@ -80,12 +80,22 @@ export const fetchChannelsInWorkspace = async (workspace_id: string) => {
 
 }
 
-export const fetchWorkspaceChannelMessages = async (workspace_id: string) => {
+export const fetchMessagesInChannel = async (channel_id: string) => {
     if(!auth.currentUser){
         console.log('Must be logged in to get workspaces')
         return 
      }
      try{
+        const messageQuery = query(channelMessageCollection, where("channel_id", '==', channel_id))
+        const channelMessagesSnapshot = await getDocs(messageQuery)
+        const messagesInChannel = <any>[]
+
+channelMessagesSnapshot.forEach((doc) => {
+    const messageData = doc.data()
+    messagesInChannel.push(messageData)
+})
+return messagesInChannel
+
    
     } catch {
         console.log('Error getting user workspaces')
