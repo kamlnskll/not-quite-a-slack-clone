@@ -15,11 +15,11 @@ const ChatBubble = ({message}: Props) => {
    
   <>
     { message.sender_id === auth?.currentUser?.uid ? (
-      <Paper withBorder={true}>
+      <Paper withBorder={true} my='xs'>
         {message.messageBody}
       </Paper>
     ) : (
-      <Paper>NO NOT MY MESSAGE</Paper>
+      <Paper withBorder={true}>NO NOT MY MESSAGE</Paper>
     )}
   </>
   

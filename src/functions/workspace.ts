@@ -120,7 +120,19 @@ export const fetchWorkspaceUsers = async (workspace_id: string) => {
 }
 
 
-export const workspaceInvite = async () => {
+export const inviteToWorkspace = async () => {
+    
+    if(!auth.currentUser){
+        console.log('Must be logged in to invite to Workspace')
+        return 
+     }
+     try {
+
+
+        
+     } catch (err) {
+        console.log(err)
+     }
 
     
 }
