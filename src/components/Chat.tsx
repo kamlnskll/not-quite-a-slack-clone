@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Paper, Title } from '@mantine/core'
 import ChatBox from './ChatBox'
-import { listenForMessagesInChannel } from '../functions/channel'
+import { initialFetchForMessagesInChannel, listenForMessagesInChannel } from '../functions/channel'
 import { ChannelContext } from '../context/ChannelContext'
 import ChatBubble from './ChatBubble'
 
@@ -11,10 +11,14 @@ const { focusedChannel } = useContext<any>(ChannelContext)
 const [chatMessages, setChatMessages] = useState<any>([])
 
   useEffect(() => {
+    // initialFetchForMessagesInChannel(focusedChannel.channel_id).then((res: any) => {
+    //   setChatMessages(res)
+    // })
     const unsub = listenForMessagesInChannel(focusedChannel.channel_id, (messages) => {
       setChatMessages(messages)
-      console.log('Received message from listener - chatMessages', chatMessages)
+      
     })
+    // .then(() => console.log(chatMessages))
 
     return () => {
       if (unsub && typeof unsub === 'function') {
@@ -26,12 +30,13 @@ const [chatMessages, setChatMessages] = useState<any>([])
     }, [focusedChannel.channel_id])
 
   return (
-    <Container>
-       
-            Here will be chat area
-            {chatMessages.map((message: any) => {
+    <Container onClick={() => console.log(chatMessages)}>
+            <Container fluid>
+            {/* Here will be chat area */}
+            {chatMessages.map((message: any) => (
               <ChatBubble message={message} />
-            })}
+            ))}
+            </Container>
             <ChatBox />
         </Container>
   )
