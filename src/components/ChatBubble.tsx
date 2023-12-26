@@ -13,7 +13,7 @@ const ChatBubble = ({message}: Props) => {
 
   return (
    
-  <div>
+  <>
     { message.sender_id === auth?.currentUser?.uid ? (
       <Paper withBorder={true}>
         {message.messageBody}
@@ -21,7 +21,7 @@ const ChatBubble = ({message}: Props) => {
     ) : (
       <Paper>NO NOT MY MESSAGE</Paper>
     )}
-  </div>
+  </>
   
   )
 }

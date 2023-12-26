@@ -4,16 +4,16 @@ import ChatBox from './ChatBox'
 import { initialFetchForMessagesInChannel, listenForMessagesInChannel } from '../functions/channel'
 import { ChannelContext } from '../context/ChannelContext'
 import ChatBubble from './ChatBubble'
+import { WorkspaceContext } from '../context/WorkspaceContext'
 
 const Chat = () => {
 
 const { focusedChannel } = useContext<any>(ChannelContext)
+const { focusedWorkspace } = useContext<any>(WorkspaceContext)
 const [chatMessages, setChatMessages] = useState<any>([])
 
   useEffect(() => {
-    // initialFetchForMessagesInChannel(focusedChannel.channel_id).then((res: any) => {
-    //   setChatMessages(res)
-    // })
+ 
     const unsub = listenForMessagesInChannel(focusedChannel.channel_id, (messages) => {
       setChatMessages(messages)
       
@@ -29,8 +29,12 @@ const [chatMessages, setChatMessages] = useState<any>([])
     
     }, [focusedChannel.channel_id])
 
+    useEffect(() => {
+      setChatMessages([])
+    }, [focusedWorkspace])
+
   return (
-    <Container onClick={() => console.log(chatMessages)}>
+    <Container onClick={() => console.log(chatMessages)} fluid>
             <Container fluid>
             {/* Here will be chat area */}
             {chatMessages.map((message: any) => (
