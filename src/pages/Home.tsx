@@ -7,6 +7,7 @@ import WorkspaceCard from '../components/WorkspaceCard';
 import { WorkspaceContext } from '../context/WorkspaceContext';
 import Workspace from '../components/Workspace';
 import Profile from '../components/Profile';
+import InvitesModal from '../components/InvitesModal';
 
 
 
@@ -35,7 +36,7 @@ useEffect(() => {
               }}
               padding="md"
             >
-          
+              <InvitesModal />
               <AppShell.Navbar p="md">
               <Paper withBorder={true} onClick={() => 
           {setFocusedWorkspace({})}} p='xs' my='xs' radius={'md'}>
