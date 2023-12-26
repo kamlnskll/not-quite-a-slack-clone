@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Textarea, Container, Paper, Input } from '@mantine/core'
+import { Textarea, Container, Paper, Input, Group, ActionIcon, Grid } from '@mantine/core'
 import { useForm } from '@mantine/form'
+import { IconMessage2Plus } from '@tabler/icons-react'
 
 const ChatBox = () => {
 
@@ -17,24 +18,28 @@ const form = useForm({
 
   return (
     <Container>
-      <form onKeyDown={(e) => {
-        if(e.key === 'Enter') {
-          console.log('Enter key pressed')
-        }
-       
-        }} onSubmit={form.onSubmit((values) => console.log(values))}>
-<Textarea 
+  <form onSubmit={form.onSubmit((values) => {
+    console.log(values.message)
+    form.reset()
+    })}>
+<Grid>
+  <Grid.Col span={4}><Textarea 
     description='Send message'
-    onSubmit={() => console.log(value)}
     placeholder='Write something..'
-    value={value}
-    
-    onChange={((e) => setValue(e.currentTarget.value))}
-    />   
-    </form>
+    {...form.getInputProps('message')}
+    /></Grid.Col>
+<Grid.Col span={1}>
+<ActionIcon type='submit'>
+    <IconMessage2Plus size='xs' />  
+    </ActionIcon>  
+</Grid.Col>
+   
+  </Grid>
+  </form>
    
     </Container>
   )
+  
 }
 
 export default ChatBox
