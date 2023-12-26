@@ -29,8 +29,8 @@ const form = useForm({
     {...form.getInputProps('message')}
     /></Grid.Col>
 <Grid.Col span={1}>
-<ActionIcon type='submit'>
-    <IconMessage2Plus size='xs' />  
+<ActionIcon type='submit' size='sm'>
+    <IconMessage2Plus/>  
     </ActionIcon>  
 </Grid.Col>
    

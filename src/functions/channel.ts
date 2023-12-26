@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import { db, auth } from "../firebase"
-import { setDoc, where, collection, serverTimestamp, doc, addDoc, query, getDocs, getDoc } from "@firebase/firestore"
+import { setDoc, where, collection, serverTimestamp, onSnapshot, doc, addDoc, query, getDocs, getDoc } from "@firebase/firestore"
 import { v4 as uuidv4 } from 'uuid';
 
 const channelCollection = collection(db, 'channels')
@@ -80,21 +80,34 @@ export const fetchChannelsInWorkspace = async (workspace_id: string) => {
 
 }
 
-export const fetchMessagesInChannel = async (channel_id: string) => {
+export const ListenForMessagesInChannel = async (channel_id: string, callback: (messages: any[]) => void) => {
     if(!auth.currentUser){
         console.log('Must be logged in to get workspaces')
         return 
      }
      try{
         const messageQuery = query(channelMessageCollection, where("channel_id", '==', channel_id))
-        const channelMessagesSnapshot = await getDocs(messageQuery)
-        const messagesInChannel = <any>[]
+        // const channelMessagesSnapshot = await onSnapshot(messageQuery)
+        const unsubscribe = onSnapshot(messageQuery, (snapshot) => {
+            const messagesInChannel = <any>[]
+            snapshot.forEach((doc) => {
+                const messageData = doc.data()
+                messagesInChannel.push(messageData)
+            })
 
-channelMessagesSnapshot.forEach((doc) => {
-    const messageData = doc.data()
-    messagesInChannel.push(messageData)
-})
-return messagesInChannel
+            callback(messagesInChannel)
+        })
+
+        return unsubscribe
+
+        // const messagesInChannel = <any>
+        // []
+
+// channelMessagesSnapshot.forEach((doc) => {
+//     const messageData = doc.data()
+//     messagesInChannel.push(messageData)
+// })
+// return messagesInChannel
 
    
     } catch {
