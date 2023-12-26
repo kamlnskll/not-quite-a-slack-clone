@@ -1,12 +1,27 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDisclosure} from '@mantine/hooks'
+import { workspaceInviteListener } from '../functions/workspace';
 import { ActionIcon, Container, Text, Modal } from '@mantine/core';
-
+import { auth } from '../firebase';
 
 const InvitesModal = () => {
 
     const [opened, { open, close }] = useDisclosure(false);
+    const [invites, setInvites] = useState<any>([])
+    
 
+useEffect(() => {
+const unsub = workspaceInviteListener(auth?.currentUser?.uid, (invites) => {
+setInvites(invites)
+})
+return () => {
+    if (unsub && typeof unsub === 'function') {
+      //@ts-ignore
+      unsub();
+    }
+  };
+
+}, [])
 
   return (
     <Container>
@@ -14,7 +29,7 @@ const InvitesModal = () => {
             <Text>Invites</Text>
         </ActionIcon>
         <Modal opened={opened} onClose={close}>
-        <Text>Invites? You? Neva neva neva!</Text>
+        <Text onClick={() => console.log(invites)}>You have {invites.length} invites</Text>
 
         </Modal>
     </Container>

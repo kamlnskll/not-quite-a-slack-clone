@@ -18,7 +18,6 @@ const [chatMessages, setChatMessages] = useState<any>([])
       setChatMessages(messages)
       
     })
-    // .then(() => console.log(chatMessages))
 
     return () => {
       if (unsub && typeof unsub === 'function') {
