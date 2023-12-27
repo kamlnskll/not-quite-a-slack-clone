@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { WorkspaceContext } from '../../context/WorkspaceContext'
-import { Title, Group, Container, Text } from '@mantine/core'
+import { Title, Group, Container, Text, Flex } from '@mantine/core'
 import NewChannel from '../channel/NewChannel'
 import { fetchChannelsInWorkspace  } from '../../functions/channel'
 import ChannelListItem from '../channel/ChannelListItem'
@@ -53,12 +53,12 @@ useEffect(() => {
       </Group>
       <InviteToWorkspaceModal />
 
-      <Container>
         {/* @ts-ignore */}
         {channels.map((channelListItem) => (
+        <Flex py={'2px'} w='25%' justify='left'>
         <ChannelListItem channel={channelListItem}/>
+        </Flex>
         ))}
-      </Container>
       <Container>
         { Object.keys(focusedChannel).length === 0 ? (
 null

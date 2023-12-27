@@ -1,4 +1,4 @@
-import { Paper, Title } from '@mantine/core'
+import { Paper, Title, Text } from '@mantine/core'
 import React, { useContext } from 'react'
 import { ChannelContext } from '../../context/ChannelContext'
 
@@ -12,7 +12,7 @@ const { focusedChannel, setFocusedChannel } = useContext(ChannelContext)
 
   return (
     <Paper withBorder={true} onClick={() => {setFocusedChannel(channel)}}>
-    <Title size='xs' onClick={() => console.log(focusedChannel)}>{channel.channelName}</Title>
+    <Text pl='md' onClick={() => console.log(focusedChannel)}>{channel.channelName}</Text>
     </Paper>
   )
 }
