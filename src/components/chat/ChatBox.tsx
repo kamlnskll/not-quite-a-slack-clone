@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Textarea, Container, Paper, Input, Group, ActionIcon, Grid } from '@mantine/core'
+import { Textarea, Container, Paper, Input, Group, ActionIcon, Grid, Button, Text, Title, Space } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { IconMessage2Plus } from '@tabler/icons-react'
 import { newChannelMessage } from '../../functions/channel'
@@ -20,27 +20,22 @@ const form = useForm({
 
 
   return (
-    <Container>
   <form onSubmit={form.onSubmit((values) => {
     newChannelMessage(focusedChannel.channel_id, values.message).then((res) => console.log(res)).catch((err) => console.log(err))
     form.reset()
     })}>
-<Grid>
-  <Grid.Col span={4}><Textarea 
+<Textarea 
     description='Send message'
     placeholder='Write something..'
     {...form.getInputProps('message')}
-    /></Grid.Col>
-<Grid.Col span={1}>
-<ActionIcon type='submit' size='sm'>
-    <IconMessage2Plus/>  
-    </ActionIcon>  
-</Grid.Col>
-   
-  </Grid>
+    />
+
+<Button type='submit' size='compact-sm' my='md'>
+    <IconMessage2Plus size={'60%'}/>
+    <Title size='xs' ml='xs'>Send</Title>  
+    </Button>  
   </form>
    
-    </Container>
   )
   
 }

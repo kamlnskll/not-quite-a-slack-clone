@@ -23,12 +23,12 @@ const NewChannel = () => {
         <Modal opened={opened} onClose={close}>
         <Title size='sm'>New Channel</Title>
         <Input.Wrapper label="Name" my='sm'>
-      <TextInput placeholder="Channel Name" value={value}  onChange={(e) => setValue(e.currentTarget.value)} />
+      <TextInput placeholder="Name channel" value={value}  onChange={(e) => setValue(e.currentTarget.value)} />
     </Input.Wrapper>
     <Group my='sm'>
     <Button color='blue' onClick={() => {
-      if(focusedWorkspace && Object.hasOwn(focusedWorkspace, 'workspace_id')){
-        newChannel('Channel Name', focusedWorkspace?.workspace_id).then((res) => 
+      if(focusedWorkspace && value !== '' && Object.hasOwn(focusedWorkspace, 'workspace_id')){
+        newChannel(value, focusedWorkspace?.workspace_id).then((res) => 
         { console.log('Channel created successfully')
           console.log(res)
           close()

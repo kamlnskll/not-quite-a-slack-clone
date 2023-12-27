@@ -34,12 +34,10 @@ const [chatMessages, setChatMessages] = useState<any>([])
 
   return (
     <Container onClick={() => console.log(chatMessages)} fluid>
-            <Container fluid>
             {/* Here will be chat area */}
             {chatMessages.map((message: any) => (
               <ChatBubble message={message} />
             ))}
-            </Container>
             <ChatBox />
         </Container>
   )

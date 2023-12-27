@@ -34,12 +34,12 @@ useEffect(() => {
                 breakpoint: 'sm',
                 collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
               }}
-              padding="md"
+              padding="sm"
             >
               <InvitesModal />
               <AppShell.Navbar p="md">
               <Paper withBorder={true} onClick={() => 
-          {setFocusedWorkspace({})}} p='xs' my='xs' radius={'md'}>
+          {setFocusedWorkspace({})}} p='sm' my='sm' radius={'md'}>
         <Text size='xs'>Profile?</Text>
         </Paper>                <Group>
                 <Title size='sm' >Workspaces</Title>
@@ -53,7 +53,6 @@ useEffect(() => {
                   </Stack>
               </AppShell.Navbar>
               <AppShell.Main>
-                <Container>
                   <Group justify='flex-end'>
                   <Burger opened={desktopOpened} onClick={() => setDesktopOpened(!desktopOpened)}/>
                   </Group>
@@ -64,7 +63,7 @@ useEffect(() => {
                   <Workspace />
 
                   }
-                  </Container></AppShell.Main>
+                 </AppShell.Main>
             </AppShell>
           );
       
