@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {useDisclosure} from '@mantine/hooks'
-import { workspaceInviteListener } from '../functions/workspace';
-import { ActionIcon, Container, Text, Modal } from '@mantine/core';
+import { workspaceInviteListener } from '../functions/invites';
+import { ActionIcon, Container, Text, Modal, Paper } from '@mantine/core';
 import { auth } from '../firebase';
+import InviteListItem from './InviteListItem';
 
 const InvitesModal = () => {
 
@@ -30,7 +31,9 @@ return () => {
         </ActionIcon>
         <Modal opened={opened} onClose={close}>
         <Text onClick={() => console.log(invites)}>You have {invites.length} invites</Text>
-
+        {invites.map((invite: any) => (
+            <InviteListItem invite={invite} />
+        ))}
         </Modal>
     </Container>
   )

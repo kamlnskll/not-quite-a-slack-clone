@@ -1,7 +1,6 @@
 // Functions related to workspaces will be found here including creating them, leaving etc.
-import {useState} from 'react'
 import { db, auth } from "../firebase"
-import { setDoc, where, collection, serverTimestamp, doc, addDoc, query, getDocs, getDoc, onSnapshot } from "@firebase/firestore"
+import { setDoc, where, collection, serverTimestamp, doc, addDoc, query, getDocs, getDoc } from "@firebase/firestore"
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -9,7 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 const workspaceCollection = collection(db, 'workspace')
 const workspaceMembersCollection = collection(db, 'workspace_members')
-const workspaceInvitesCollection = collection(db, 'workspace_invites')
 
 
 export const createWorkspace = async (workspaceName: string) => {
@@ -119,65 +117,6 @@ export const fetchWorkspaceUsers = async (workspace_id: string) => {
     } catch {
         console.log('Error getting user workspaces')
     }
-}
-
-
-export const createInviteToWorkspace = async (workspace_id: any, receiver_id: any) => {
-    
-    if(!auth.currentUser){
-        console.log('Must be logged in to invite to Workspace')
-        return 
-     }
-
-     if(receiver_id === auth?.currentUser?.uid){
-        console.warn('Cannot invite yourself!')
-        return
-    }
-     try {
-        
-        const inviteRef = doc(db, 'workspace_invites', workspace_id)
-        await setDoc(inviteRef, {
-            sender_id: auth?.currentUser?.uid,
-            receiver_id: receiver_id,
-            createdAt: serverTimestamp(),
-            workspace_id: workspace_id
-        })
-
-
-     } catch (err) {
-        console.log(err)
-     }
-
-    
-}
-
-export const workspaceInviteListener = async (receiver_id: any, callback: (messages: any[]) => void) => {
-    
-    if(!auth.currentUser){
-        console.log('Must be logged in to invite to Workspace')
-        return 
-     }
-
-     try {
-        
-        const inviteQuery = query(workspaceInvitesCollection, where("receiver_id", '==', receiver_id))
-        const unsubscribe = onSnapshot(inviteQuery, (snapshot) => {
-            const workspaceInvites = <any>[]
-            snapshot.forEach((doc) => {
-                const invitesData = doc.data()
-                workspaceInvites.push(invitesData)
-            })
-
-            callback(workspaceInvites)
-        })
-
-        return unsubscribe
-
-     } catch (err) {
-        console.log(err)
-
-     }
-
 }
 
 
