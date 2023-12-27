@@ -7,6 +7,7 @@ import ChannelListItem from './ChannelListItem'
 import { ChannelContext } from '../context/ChannelContext'
 import ChatBox from './ChatBox'
 import Channel from './Channel'
+import InviteToWorkspaceModal from './InviteToWorkspaceModal'
 
 
 const Workspace = () => {
@@ -50,6 +51,8 @@ useEffect(() => {
       <Title onClick={() => console.log(channels)}>{focusedWorkspace.workspaceName}</Title>
       <NewChannel />
       </Group>
+      <InviteToWorkspaceModal />
+
       <Container>
         {/* @ts-ignore */}
         {channels.map((channelListItem) => (
