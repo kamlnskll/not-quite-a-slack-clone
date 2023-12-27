@@ -1,6 +1,6 @@
 import { Paper, Title } from '@mantine/core'
 import React, { useContext } from 'react'
-import { ChannelContext } from '../context/ChannelContext'
+import { ChannelContext } from '../../context/ChannelContext'
 
 type Props = {
     channel: any

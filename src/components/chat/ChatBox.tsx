@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Textarea, Container, Paper, Input, Group, ActionIcon, Grid } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { IconMessage2Plus } from '@tabler/icons-react'
-import { newChannelMessage } from '../functions/channel'
-import { ChannelContext } from '../context/ChannelContext'
+import { newChannelMessage } from '../../functions/channel'
+import { ChannelContext } from '../../context/ChannelContext'
 
 const ChatBox = () => {
 

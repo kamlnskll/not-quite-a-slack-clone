@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { WorkspaceContext } from '../context/WorkspaceContext'
+import { WorkspaceContext } from '../../context/WorkspaceContext'
 import { Title, Group, Container, Text } from '@mantine/core'
-import NewChannel from './NewChannel'
-import { fetchChannelsInWorkspace  } from '../functions/channel'
-import ChannelListItem from './ChannelListItem'
-import { ChannelContext } from '../context/ChannelContext'
-import ChatBox from './ChatBox'
-import Channel from './Channel'
-import InviteToWorkspaceModal from './InviteToWorkspaceModal'
+import NewChannel from '../channel/NewChannel'
+import { fetchChannelsInWorkspace  } from '../../functions/channel'
+import ChannelListItem from '../channel/ChannelListItem'
+import { ChannelContext } from '../../context/ChannelContext'
+import ChatBox from '../chat/ChatBox'
+import Channel from '../channel/Channel'
+import InviteToWorkspaceModal from '../invites/InviteToWorkspaceModal'
 
 
 const Workspace = () => {

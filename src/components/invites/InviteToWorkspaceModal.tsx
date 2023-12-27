@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import {useDisclosure} from '@mantine/hooks'
 import { ActionIcon, Button, Container, Input, Modal, Text, TextInput, Title } from '@mantine/core'
-import { createInviteToWorkspace } from '../functions/invites'
-import { WorkspaceContext } from '../context/WorkspaceContext'
+import { createInviteToWorkspace } from '../../functions/invites'
+import { WorkspaceContext } from '../../context/WorkspaceContext'
 
 const InviteToWorkspaceModal = () => {
 

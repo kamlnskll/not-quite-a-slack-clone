@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react'
 import {ActionIcon, Modal, Title, Text, Input, Button, Group, TextInput, Container} from '@mantine/core'
 import {useDisclosure} from '@mantine/hooks'
 import { IconCubePlus } from '@tabler/icons-react'
-import { newChannel } from '../functions/channel'
-import { WorkspaceContext } from '../context/WorkspaceContext'
+import { newChannel } from '../../functions/channel'
+import { WorkspaceContext } from '../../context/WorkspaceContext'
 
 
 const NewChannel = () => {

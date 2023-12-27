@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {useDisclosure} from '@mantine/hooks'
-import { workspaceInviteListener } from '../functions/invites';
+import { workspaceInviteListener } from '../../functions/invites';
 import { ActionIcon, Container, Text, Modal, Paper } from '@mantine/core';
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 import InviteListItem from './InviteListItem';
 
 const InvitesModal = () => {

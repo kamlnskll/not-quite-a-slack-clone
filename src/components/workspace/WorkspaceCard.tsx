@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { fetchWorkspace } from '../functions/workspace'
+import { fetchWorkspace } from '../../functions/workspace'
 import { Paper, Text } from '@mantine/core'
-import { WorkspaceContext } from '../context/WorkspaceContext'
+import { WorkspaceContext } from '../../context/WorkspaceContext'
 
 const WorkspaceCard = (workspace: any) => {
 

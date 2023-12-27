@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {ActionIcon, Modal, Title, Text, Input, Button, Group, TextInput, Container} from '@mantine/core'
 import {useDisclosure} from '@mantine/hooks'
-import { createWorkspace, createWorkspaceMember } from '../functions/workspace'
+import { createWorkspace, createWorkspaceMember } from '../../functions/workspace'
 import { IconCubePlus } from '@tabler/icons-react'
 
 const NewWorkspace = () => {

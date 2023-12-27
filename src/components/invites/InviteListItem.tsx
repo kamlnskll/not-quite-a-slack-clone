@@ -1,6 +1,6 @@
 import { Paper, Group, Text, Button, ButtonGroup, CloseButton, ActionIcon } from '@mantine/core'
 import { IconCheck } from '@tabler/icons-react'
-import { acceptWorkspaceInvite, declineWorkspaceInvite } from '../functions/invites'
+import { acceptWorkspaceInvite, declineWorkspaceInvite } from '../../functions/invites'
 import React, { useEffect } from 'react'
 
 type Props = {

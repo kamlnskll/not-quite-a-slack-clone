@@ -2,12 +2,12 @@ import React, {useState, useEffect, useContext} from 'react'
 import { AppShell, Burger, Group, Skeleton, Container, Stack, Button, Text, Title, Paper } from '@mantine/core';
 import { logOut } from '../functions/auth';
 import { getUserWorkspaces } from '../functions/workspace'
-import NewWorkspace from '../components/NewWorkspace';
-import WorkspaceCard from '../components/WorkspaceCard';
+import NewWorkspace from '../components/workspace/NewWorkspace';
+import WorkspaceCard from '../components/workspace/WorkspaceCard';
 import { WorkspaceContext } from '../context/WorkspaceContext';
-import Workspace from '../components/Workspace';
-import Profile from '../components/Profile';
-import InvitesModal from '../components/InvitesModal';
+import Workspace from '../components/workspace/Workspace';
+import Profile from '../components/profile/Profile';
+import InvitesModal from '../components/invites/InvitesModal';
 
 
 

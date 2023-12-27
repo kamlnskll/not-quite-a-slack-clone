@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Paper, Title } from '@mantine/core'
 import ChatBox from './ChatBox'
-import { initialFetchForMessagesInChannel, listenForMessagesInChannel } from '../functions/channel'
-import { ChannelContext } from '../context/ChannelContext'
+import { initialFetchForMessagesInChannel, listenForMessagesInChannel } from '../../functions/channel'
+import { ChannelContext } from '../../context/ChannelContext'
 import ChatBubble from './ChatBubble'
-import { WorkspaceContext } from '../context/WorkspaceContext'
+import { WorkspaceContext } from '../../context/WorkspaceContext'
 
 const Chat = () => {
 
