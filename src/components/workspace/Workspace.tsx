@@ -15,7 +15,7 @@ const Workspace = () => {
   //@ts-ignore
   const { focusedWorkspace } = useContext(WorkspaceContext)
   //@ts-ignore
-  const { focusedChannel } = useContext(ChannelContext)
+  const { focusedChannel, setFocusedChannel } = useContext(ChannelContext)
   const [channels, setChannels] = useState([])
 
 
@@ -44,15 +44,14 @@ useEffect(() => {
 }, [focusedWorkspace])
 
 
-
   return (
     <Container>
+      <Title ff={'sans-serif'} >{focusedWorkspace.workspaceName}</Title>
+      <Title c={''}  ff={'monospace'} mt='sm' ml='10px' order={3} >{Object.hasOwn(focusedChannel, 'channelName') ? `${focusedChannel.channelName}` : ``}</Title>
       <Group>
-      <Title onClick={() => console.log(channels)}>{focusedWorkspace.workspaceName}</Title>
+      <InviteToWorkspaceModal />
       <NewChannel />
       </Group>
-      <InviteToWorkspaceModal />
-
         {/* @ts-ignore */}
         {channels.map((channelListItem) => (
         <Flex py={'2px'} w='25%' justify='left'>

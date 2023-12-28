@@ -8,6 +8,7 @@ import { WorkspaceContext } from '../context/WorkspaceContext';
 import Workspace from '../components/workspace/Workspace';
 import Profile from '../components/profile/Profile';
 import InvitesModal from '../components/invites/InvitesModal';
+import { ChannelContext } from '../context/ChannelContext';
 
 
 
@@ -18,6 +19,7 @@ const [desktopOpened, setDesktopOpened] = useState(false);
 const [userWorkspaces, setUserWorkspaces] = useState([])
 //@ts-ignore
 const { focusedWorkspace, setFocusedWorkspace } = useContext(WorkspaceContext)
+const { setFocusedChannel } = useContext<any>(ChannelContext)
 
 useEffect(() => {
   getUserWorkspaces().then((res) => {
@@ -25,6 +27,12 @@ useEffect(() => {
     console.log(res)})
   
 }, [])
+
+useEffect(() => {
+  setFocusedChannel({})
+  
+  }, [focusedWorkspace])
+  
 
         return (
             <AppShell

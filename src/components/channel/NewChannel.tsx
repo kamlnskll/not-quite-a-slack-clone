@@ -16,10 +16,10 @@ const NewChannel = () => {
     
 
   return (
-    <Container size='md'>
-        <ActionIcon size='sm'>
-        <IconCubePlus onClick={open}/>
-        </ActionIcon>
+    <>
+        <Button leftSection={<IconCubePlus size='16' />} size='compact-md' onClick={open}>
+        <Text size='sm'>Create New Channel</Text>
+        </Button>
         <Modal opened={opened} onClose={close}>
         <Title size='sm'>New Channel</Title>
         <Input.Wrapper label="Name" my='sm'>
@@ -35,11 +35,10 @@ const NewChannel = () => {
         })
       }
     }}>Create</Button>
-    <Button color='orange'>Cancel</Button>
+    <Button color='orange' onClick={close}>Cancel</Button>
     </Group>
         </Modal>
-    </Container>
-
+        </>
   )
 }
 

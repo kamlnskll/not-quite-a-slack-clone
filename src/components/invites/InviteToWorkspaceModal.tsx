@@ -3,6 +3,7 @@ import {useDisclosure} from '@mantine/hooks'
 import { ActionIcon, Button, Container, Input, Modal, Text, TextInput, Title } from '@mantine/core'
 import { createInviteToWorkspace } from '../../functions/invites'
 import { WorkspaceContext } from '../../context/WorkspaceContext'
+import { IconUsers } from '@tabler/icons-react'
 
 const InviteToWorkspaceModal = () => {
 
@@ -11,10 +12,10 @@ const InviteToWorkspaceModal = () => {
     const { focusedWorkspace } = useContext<any>(WorkspaceContext)
 
   return (
-    <Container>
-    <ActionIcon onClick={open}>
-        <Text>Invite to Workspace</Text>
-    </ActionIcon>
+<>
+    <Button my='5%' size='compact-md' leftSection={<IconUsers size='16' />} onClick={open}>
+        <Text size='sm' >Invite to Workspace</Text>
+    </Button>
     <Modal opened={opened} onClose={close}>
     <Title size='xs' onClick={() => console.log()}>Invite a user to this workspace</Title>
     <Input.Wrapper>
@@ -37,7 +38,7 @@ const InviteToWorkspaceModal = () => {
       close()
     }}>Cancel</Button>
     </Modal>
-</Container>
+    </>
   )
 }
 
