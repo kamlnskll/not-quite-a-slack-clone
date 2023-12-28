@@ -16,12 +16,16 @@ const ChatBubble = ({message}: Props) => {
   <>
     { message.sender_id === auth?.currentUser?.uid ? (
       <Flex justify={'right'}>
-      <Paper withBorder={true} my='xs' w='30%' py='4px'>
-        <Text ml='sm'>{message.messageBody}</Text>
+      <Paper  bg={'lightblue'} withBorder={true} my='xs' w='30%' py='4px'>
+        <Text color='dark' ml='sm'>{message.messageBody}</Text>
       </Paper>
       </Flex>
     ) : (
-      <Paper withBorder={true}>NO NOT MY MESSAGE</Paper>
+      <Flex justify={'left'}>
+      <Paper  bg={'green'} withBorder={true} my='xs' w='30%' py='4px'>
+        <Text color='dark' ml='sm'>{message.messageBody}</Text>
+      </Paper>
+      </Flex>
     )}
   </>
   
