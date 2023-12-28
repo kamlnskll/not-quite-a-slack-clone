@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Textarea, Container, Paper, Input, Group, ActionIcon, Grid, Button, Text, Title, Space } from '@mantine/core'
+import { Textarea, Container, Paper, Input, Group, ActionIcon, Grid, Button, Text, Title, Space, Affix } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { IconMessage2Plus } from '@tabler/icons-react'
 import { newChannelMessage } from '../../functions/channel'
@@ -34,8 +34,8 @@ const form = useForm({
     <IconMessage2Plus size={'60%'}/>
     <Title size='xs' ml='xs'>Send</Title>  
     </Button>  
+
   </form>
-   
   )
   
 }
