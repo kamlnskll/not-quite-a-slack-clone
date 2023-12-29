@@ -13,21 +13,6 @@ channel: any
 const Channel = ({channel}: Props) => {
 
 const [channelMessages, setChannelMessages] = useState([])
-//@ts-ignore
-const { focusedChannel } = useContext(ChannelContext)
-
-const channelDataHandler = async () => {
-// const listenForMessagesInChannel = (channel.channel_id, (messages: any) => {
-// console.log(messages)
-// })
-// // .then((res: Response) => console.log('Messages in channel fetched', res)).catch((err: Error) => console.log(err))
-
-
-}
-
-useEffect(() => {
-  channelDataHandler()
-}, [focusedChannel])
 
 
   return (

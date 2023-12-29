@@ -44,8 +44,8 @@ useEffect(() => {
               }}
               padding="sm"
             >
-              <InvitesModal />
               <AppShell.Navbar p="md">
+              <InvitesModal />
               <Paper withBorder={true} onClick={() => 
           {setFocusedWorkspace({})}} p='sm' my='sm' radius={'md'}>
         <Text size='xs'>Profile?</Text>

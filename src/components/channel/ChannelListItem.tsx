@@ -11,8 +11,8 @@ const ChannelListItem = ({channel}: Props) => {
 const { focusedChannel, setFocusedChannel } = useContext(ChannelContext)
 
   return (
-    <Paper withBorder={true} onClick={() => {setFocusedChannel(channel)}}>
-    <Text pl='md' onClick={() => console.log(focusedChannel)}>{channel.channelName}</Text>
+    <Paper bg={'lightgray'} withBorder={true} onClick={() => {setFocusedChannel(channel)}}>
+    <Text mx='md' size='sm' fw={500}>{channel.channelName}</Text>
     </Paper>
   )
 }

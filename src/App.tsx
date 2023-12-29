@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {Routes, Route, BrowserRouter} from 'react-router-dom'
+import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import { useAuth } from './functions/useAuth';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -20,9 +20,9 @@ function App() {
 <ChannelContext.Provider value={{ focusedChannel, setFocusedChannel }}>
 <BrowserRouter>
 <Routes>
-  <Route path='/' element={user ? <Home /> : <Login />}/>
-  <Route path='/login'  element={!user ? <Login /> : <Home />}/>
-  <Route path='/register'  element={!user ? <Register /> : <Home />}/>
+  <Route path='/' element={user ? <Home /> : <Navigate to='/login' /> } />
+  <Route path='/login'  element={!user ? <Login /> : <Navigate to='/'/> } /> 
+  <Route path='/register'  element={!user ? <Register /> : <Navigate to='/'/>}/>
 </Routes>
 </BrowserRouter>
 </ChannelContext.Provider>
