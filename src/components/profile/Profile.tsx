@@ -1,8 +1,9 @@
-import { Avatar, Text, Container, Group, Paper, Stack, Title, ActionIcon, Button } from '@mantine/core'
-import { IconCopy, IconCheck } from '@tabler/icons-react'
+import { Avatar, Text, Container, Group, Paper, Stack, Title,  Button,  } from '@mantine/core'
+import { IconCopy, IconCheck,  } from '@tabler/icons-react'
 import React from 'react'
 import { auth } from '../../firebase'
 import { useClipboard } from '@mantine/hooks';
+import ContactsCard from '../contacts/ContactsCard';
 
 
 const Profile = () => {
@@ -27,10 +28,8 @@ const Profile = () => {
         </Group>
         </Stack>
         </Group>
-      
       </Paper>
-
-
+<ContactsCard />
     </Container>
   )
 }
