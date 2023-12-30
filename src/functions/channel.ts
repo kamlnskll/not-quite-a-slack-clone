@@ -1,5 +1,5 @@
 import { db, auth } from "../firebase"
-import { setDoc, where, collection, serverTimestamp, onSnapshot, doc, query, getDocs } from "@firebase/firestore"
+import { setDoc, where, collection, serverTimestamp, onSnapshot, doc, query, getDocs, orderBy } from "@firebase/firestore"
 import { v4 as uuidv4 } from 'uuid';
 
 const channelCollection = collection(db, 'channels')
@@ -93,7 +93,7 @@ export const initialFetchForMessagesInChannel = async (channel_id: string) => {
         return 
      }
      try{
-        const messageQuery = query(channelMessageCollection, where("channel_id", '==', channel_id))
+        const messageQuery = query(channelMessageCollection, where("channel_id", '==', channel_id), orderBy("createdAt"))
         const channelMessagesSnapshot = await getDocs(messageQuery)
         const messagesInChannel = <any>[]
 

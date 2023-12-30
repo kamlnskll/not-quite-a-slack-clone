@@ -101,9 +101,9 @@ export const declineWorkspaceInvite = async (invite_id: string) => {
         console.log('Must be logged in to invite to Workspace')
         return 
      }
+     const inviteRef = doc(workspaceInvitesCollection, invite_id)
 
      try {
-        const inviteRef = doc(workspaceInvitesCollection, invite_id)
         await deleteDoc(inviteRef).then((res) => {console.log(res)}).catch((err) => console.warn('Error when deleting invite', err))
 
      }

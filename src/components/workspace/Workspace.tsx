@@ -5,7 +5,6 @@ import NewChannel from '../channel/NewChannel'
 import { fetchChannelsInWorkspace  } from '../../functions/channel'
 import ChannelListItem from '../channel/ChannelListItem'
 import { ChannelContext } from '../../context/ChannelContext'
-import ChatBox from '../chat/ChatBox'
 import Channel from '../channel/Channel'
 import InviteToWorkspaceModal from '../invites/InviteToWorkspaceModal'
 
