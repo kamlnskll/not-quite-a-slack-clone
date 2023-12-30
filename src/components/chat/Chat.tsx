@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Affix, Container, Flex, Paper, Title } from '@mantine/core'
+import { Affix, Container, Divider, Flex, Paper, Title } from '@mantine/core'
 import ChatBox from './ChatBox'
 import { initialFetchForMessagesInChannel, listenForMessagesInChannel } from '../../functions/channel'
 import { ChannelContext } from '../../context/ChannelContext'
@@ -33,8 +33,8 @@ const [chatMessages, setChatMessages] = useState<any>([])
     }, [focusedWorkspace])
 
   return (
-    <Container onClick={() => console.log(chatMessages)} fluid>
-            
+    <Container onClick={() => console.log(chatMessages)}fluid>
+            <Divider  mt='2%' mb='4%' />
             {/* Here will be chat area */}
             {chatMessages.map((message: any) => (
               <ChatBubble message={message} />
