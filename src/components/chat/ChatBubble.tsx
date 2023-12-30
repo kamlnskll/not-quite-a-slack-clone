@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { auth } from '../../firebase'
 import { Flex, Paper, Text } from '@mantine/core'
 
@@ -10,6 +10,10 @@ message: any,
 
 const ChatBubble = ({message}: Props) => {
 
+  useEffect(() => {
+
+    
+  }, [])
 
   return (
    
