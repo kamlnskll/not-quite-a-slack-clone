@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { fetchWorkspace } from '../../functions/workspace'
-import { Paper, Text } from '@mantine/core'
+import { Paper, Text, UnstyledButton } from '@mantine/core'
 import { WorkspaceContext } from '../../context/WorkspaceContext'
 
 const WorkspaceCard = (workspace: any) => {
@@ -21,12 +21,12 @@ useEffect(() => {
 
   return (
     <div>
-        <Paper withBorder={true} onClick={() => 
+        <UnstyledButton style={{borderStyle: 'solid', borderWidth: '1px', borderRadius: '5px', width: '100%'}} onClick={() => 
           { 
             setFocusedWorkspace(data)
-            console.log(focusedWorkspace)}}p='xs' my='xs' radius={'md'}>
+            console.log(focusedWorkspace)}}p='xs' my='xs'>
         <Text size='xs'>{data?.workspaceName}</Text>
-        </Paper>
+        </UnstyledButton>
     </div>
   )
 }

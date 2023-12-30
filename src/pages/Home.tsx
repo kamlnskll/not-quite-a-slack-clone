@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { AppShell, Burger, Group, Skeleton, Container, Stack, Button, Text, Title, Paper } from '@mantine/core';
+import { AppShell, Burger, Group, Skeleton, Container, Stack, Button, Text, Title, Paper, UnstyledButton, Avatar } from '@mantine/core';
 import { logOut } from '../functions/auth';
 import { getUserWorkspaces } from '../functions/workspace'
 import NewWorkspace from '../components/workspace/NewWorkspace';
@@ -9,6 +9,7 @@ import Workspace from '../components/workspace/Workspace';
 import Profile from '../components/profile/Profile';
 import InvitesModal from '../components/invites/InvitesModal';
 import { ChannelContext } from '../context/ChannelContext';
+import { auth } from '../firebase';
 
 
 
@@ -46,10 +47,13 @@ useEffect(() => {
             >
               <AppShell.Navbar p="md">
               <InvitesModal />
-              <Paper withBorder={true} onClick={() => 
-          {setFocusedWorkspace({})}} p='sm' my='sm' radius={'md'}>
-        <Text size='xs'>Profile?</Text>
-        </Paper>                <Group>
+              <UnstyledButton style={{borderStyle: 'solid', borderWidth: '1px', borderRadius: '5px' }}onClick={() => 
+          {setFocusedWorkspace({})}} p='sm' my='sm'>
+            <Group>
+              <Avatar size='sm' />
+        <Text size='xs'>{auth.currentUser?.email}</Text>
+        </Group>
+        </UnstyledButton>                <Group>
                 <Title size='sm' >Workspaces</Title>
                 <NewWorkspace />
                 </Group>
