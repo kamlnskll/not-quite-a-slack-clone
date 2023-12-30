@@ -53,9 +53,7 @@ useEffect(() => {
       </Group>
         {/* @ts-ignore */}
         {channels.map((channelListItem) => (
-        <Flex py={'2px'} w='25%' justify='left'>
         <ChannelListItem channel={channelListItem}/>
-        </Flex>
         ))}
       <Container>
         { Object.keys(focusedChannel).length === 0 ? (
