@@ -57,8 +57,8 @@ useEffect(() => {
               <UnstyledButton style={{borderStyle: 'solid', borderWidth: '1px', borderRadius: '5px' }}onClick={() => 
           {setFocusedWorkspace({})}} p='sm' my='sm'>
             <Group>
-              <Avatar size='sm' />
-        <Text size='xs'>{auth.currentUser?.email}</Text>
+              <Avatar size='sm' src={profileData.profilePic} />
+        <Text size='sm'>{profileData.firstName} {profileData.lastName}</Text>
         </Group>
         </UnstyledButton>                <Group>
                 <Title size='sm' >Workspaces</Title>
