@@ -1,12 +1,14 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import { createProfile } from "./profile";
 
-export const registerUser = async (email, password) => {
+export const registerUser = async (email, password, firstName, lastName, userName) => {
 
   await createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
     console.log('User created successfully', user)
+    createProfile(firstName, lastName, userName, user.uid).then((res) => console.log('Created user profile', res))
   })
   .catch((error) => {
     const errorCode = error.code;

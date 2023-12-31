@@ -13,6 +13,7 @@ const Register = () => {
   const form = useForm({
     initialValues: {
       email: '',
+      userName: '',
       firstName: '',
       lastName: '',
       password: '',
@@ -39,8 +40,9 @@ const Register = () => {
         </Anchor>
         </Text>
         <form onSubmit={form.onSubmit((values) => {
-          
-          registerUser(values.email, values.password)
+          registerUser(values.email, values.password, values.firstName, values.lastName, values.userName).then((res: any) => {
+            console.log(res)
+          })
           console.log(values)})}>
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <TextInput label="Email" placeholder="Your email" {...form.getInputProps('email')} required />
@@ -48,6 +50,7 @@ const Register = () => {
         <TextInput label="First Name" placeholder="Your first name" {...form.getInputProps('firstName')} required />
         <TextInput label="Last Name" placeholder="Your last name" {...form.getInputProps('lastName')} required />
         </Group>
+        <TextInput mt='md' label="Username" placeholder="Choose a username" {...form.getInputProps('userName')} required />
         <PasswordInput label="Password" placeholder="Your password" {...form.getInputProps('password')} required mt="md" />
         <PasswordInput label="Confirm Password" placeholder="Confirm password" {...form.getInputProps('confirmPassword')} required mt="md" />
         <Button type='submit' fullWidth mt="xl">
