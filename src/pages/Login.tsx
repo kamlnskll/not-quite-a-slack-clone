@@ -2,9 +2,11 @@ import React from 'react'
 import { AppShell, Text, Container, Button, TextInput, PasswordInput, Title, Paper, Group, Anchor, Checkbox } from '@mantine/core';
 import {useForm} from '@mantine/form'
 import { loginUser } from '../functions/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+  const navigate = useNavigate()
 
   const form = useForm({
     initialValues: {
@@ -27,7 +29,9 @@ const Login = () => {
       </Title>
       <Text c="dimmed" size="sm" ta="center" mt={5}>
         Don't have an account?{' '}
-        <Anchor size="sm" component="button">
+        <Anchor onClick={() => {
+          navigate('/register')
+        }}size="sm" component="button">
           Sign up here
         </Anchor>
         </Text>

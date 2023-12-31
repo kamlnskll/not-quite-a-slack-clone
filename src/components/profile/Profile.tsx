@@ -15,7 +15,7 @@ const Profile = () => {
       <Group ml='lg' my='50px'>
         <Avatar size='xl'></Avatar>
         <Stack>
-        <Title>Your name</Title>
+        <Title onClick={() => console.log(auth.currentUser)}>Your name</Title>
         <Group>
           <Text>Your ID:</Text>
           <Text>{auth.currentUser?.uid}</Text>
@@ -25,6 +25,9 @@ const Profile = () => {
           color={clipboard.copied ? 'indigo' : 'blue'}
           onClick={() => clipboard.copy(auth.currentUser?.uid)}
           >{clipboard.copied ? 'Copied' : 'Copy'}</Button>
+          <Button size='compact-md'>
+            Edit
+          </Button>
         </Group>
         </Stack>
         </Group>
