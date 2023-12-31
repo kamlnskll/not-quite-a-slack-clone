@@ -10,6 +10,8 @@ import Profile from '../components/profile/Profile';
 import InvitesModal from '../components/invites/InvitesModal';
 import { ChannelContext } from '../context/ChannelContext';
 import { auth } from '../firebase';
+import { fetchProfileData } from '../functions/profile';
+import { ProfileContext } from '../context/ProfileContext';
 
 
 
@@ -21,8 +23,13 @@ const [userWorkspaces, setUserWorkspaces] = useState([])
 //@ts-ignore
 const { focusedWorkspace, setFocusedWorkspace } = useContext(WorkspaceContext)
 const { setFocusedChannel } = useContext<any>(ChannelContext)
+const { profileData, setProfileData } = useContext<any>(ProfileContext)
 
 useEffect(() => {
+  //@ts-ignore
+  fetchProfileData(auth?.currentUser?.uid).then((res: any) => {
+  setProfileData(res)
+   console.log('RES from fetch profile data', res)})
   getUserWorkspaces().then((res) => {
     setUserWorkspaces(res)
     console.log(res)})

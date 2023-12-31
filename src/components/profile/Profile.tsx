@@ -1,28 +1,27 @@
 import { Avatar, Text, Container, Group, Paper, Stack, Title,  Button,  } from '@mantine/core'
 import { IconCopy, IconCheck,  } from '@tabler/icons-react'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { auth } from '../../firebase'
 import { useClipboard } from '@mantine/hooks';
 import ContactsCard from '../contacts/ContactsCard';
 import { fetchProfileData } from '../../functions/profile';
+import { ProfileContext } from '../../context/ProfileContext';
 
 
 const Profile = () => {
 
-  useEffect(() => {
-    //@ts-ignore
-    fetchProfileData(auth?.currentUser?.uid).then((res) => console.log('RES from fetch profile data', res))
+  const { profileData, setProfileData }  = useContext<any>(ProfileContext)
 
-  }, [])
   const clipboard = useClipboard({timeout: 700})
 
   return (
     <Container>
       <Paper withBorder={true} h={'200px'}>
-      <Group ml='lg' my='50px'>
-        <Avatar size='xl'></Avatar>
+      <Group ml='lg' my='20px'>
+        <Avatar size='xl' src={profileData.profilePic}></Avatar>
         <Stack>
-        <Title onClick={() => console.log(auth.currentUser)}>Your name</Title>
+        <Title onClick={() => console.log(profileData)}>{profileData.firstName} {profileData.lastName}</Title>
+        <Title ml={'md'} c={'dark'} order={5} >{profileData.userName}</Title>
         <Group>
           <Text>Your ID:</Text>
           <Text>{auth.currentUser?.uid}</Text>

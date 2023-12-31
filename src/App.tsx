@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { WorkspaceContext } from './context/WorkspaceContext';
 import { ChannelContext } from './context/ChannelContext';
+import { ProfileContext } from './context/ProfileContext';
 
 
 function App() {
@@ -13,9 +14,11 @@ function App() {
   const { user } = useAuth()
   const [focusedWorkspace, setFocusedWorkspace] = useState({})
   const [focusedChannel, setFocusedChannel] = useState({})
+  const [profileData, setProfileData] = useState({})
 
   return (
 <>
+<ProfileContext.Provider value={{profileData, setProfileData}}>
 <WorkspaceContext.Provider value={{ focusedWorkspace, setFocusedWorkspace }}>
 <ChannelContext.Provider value={{ focusedChannel, setFocusedChannel }}>
 <BrowserRouter>
@@ -27,6 +30,7 @@ function App() {
 </BrowserRouter>
 </ChannelContext.Provider>
 </WorkspaceContext.Provider>
+</ProfileContext.Provider>
 
 </>
 

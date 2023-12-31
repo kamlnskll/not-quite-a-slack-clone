@@ -17,7 +17,7 @@ await setDoc(profileRef, {
 user_id: firebaseuser_id,
 firstName: firstName,
 lastName: lastName,
-profilePic: 'gs://not-a-slack-clone.appspot.com/Default_pfp.jpg',
+profilePic: 'https://firebasestorage.googleapis.com/v0/b/not-a-slack-clone.appspot.com/o/Default_pfp.jpg?alt=media&token=5d4d29bc-4ac2-47e9-985b-272da3cc9ea2',
 userName: userName,
 createdAt: serverTimestamp()
 })
