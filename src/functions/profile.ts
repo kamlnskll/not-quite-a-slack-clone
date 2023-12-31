@@ -1,5 +1,8 @@
-import { setDoc, collection, doc, serverTimestamp } from "@firebase/firestore"
+import { setDoc, collection, doc, serverTimestamp, getDoc } from "@firebase/firestore"
 import { auth, db } from "../firebase"
+
+
+const profileRef = collection(db, 'profile')
 
 const profileCollection = collection(db, 'profile')
 
@@ -23,6 +26,33 @@ createdAt: serverTimestamp()
 
 } catch (err) {
     return err
+}
+
+
+}
+
+export const fetchProfileData = async (firebaseuser_id: string) => {
+
+const docRef = doc(profileRef, firebaseuser_id)
+
+try {
+
+    const profileSnap = await getDoc(docRef)
+    if (profileSnap.exists()){
+        return profileSnap.data()
+        // console.log('Document data', profileSnap.data())
+    }
+
+    else {
+        console.log('No such document exists!')
+    }
+
+
+}
+catch (err) {
+
+    console.log(err)
+
 }
 
 

@@ -1,12 +1,19 @@
 import { Avatar, Text, Container, Group, Paper, Stack, Title,  Button,  } from '@mantine/core'
 import { IconCopy, IconCheck,  } from '@tabler/icons-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { auth } from '../../firebase'
 import { useClipboard } from '@mantine/hooks';
 import ContactsCard from '../contacts/ContactsCard';
+import { fetchProfileData } from '../../functions/profile';
 
 
 const Profile = () => {
+
+  useEffect(() => {
+    //@ts-ignore
+    fetchProfileData(auth?.currentUser?.uid).then((res) => console.log('RES from fetch profile data', res))
+
+  }, [])
   const clipboard = useClipboard({timeout: 700})
 
   return (
