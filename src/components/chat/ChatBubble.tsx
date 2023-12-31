@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { auth } from '../../firebase'
 import { Flex, Paper, Text } from '@mantine/core'
+import { fetchProfileData } from '../../functions/profile'
 
 type Props = {
 message: any,
@@ -10,8 +11,12 @@ message: any,
 
 const ChatBubble = ({message}: Props) => {
 
-  useEffect(() => {
+const [senderData, setSenderData] = useState<any>({})
 
+  useEffect(() => {
+fetchProfileData(message.sender_id).then((res: any) => 
+setSenderData(res)
+)
     
   }, [])
 
@@ -20,6 +25,7 @@ const ChatBubble = ({message}: Props) => {
   <>
     { message.sender_id === auth?.currentUser?.uid ? (
       <Flex justify={'right'}>
+      <Text>{senderData.firstName}</Text>
       <Paper  bg={'lightblue'} withBorder={true} my='xs' w='30%' py='4px'>
         <Text color='dark' ml='sm'>{message.messageBody}</Text>
       </Paper>

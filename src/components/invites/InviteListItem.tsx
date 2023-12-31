@@ -5,6 +5,7 @@ import React, { useEffect } from 'react'
 
 type Props = {
     invite: any
+   
 }
 
 
@@ -21,7 +22,14 @@ const InviteListItem = ({invite}: Props) => {
                 </Group>
                 <Group>
                 <Group>
-                <ActionIcon color='teal'>
+                <ActionIcon color='teal' onClick={() => {
+                    acceptWorkspaceInvite(invite.workspace_id, invite.invite_id).then((res) => {
+                    declineWorkspaceInvite(invite.invite_id)
+                    console.log(res)
+                   
+
+                })
+                }}>
                     <IconCheck />
                 </ActionIcon>
                 <CloseButton onClick={() => {

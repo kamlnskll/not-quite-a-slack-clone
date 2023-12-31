@@ -32,7 +32,7 @@ return () => {
         <Modal opened={opened} onClose={close}>
         <Text onClick={() => console.log(invites)}>You have {invites.length} invites</Text>
         {invites.map((invite: any) => (
-            <InviteListItem invite={invite} />
+            <InviteListItem invite={invite}/>
         ))}
         </Modal>
         </>

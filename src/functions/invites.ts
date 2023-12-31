@@ -82,7 +82,7 @@ export const acceptWorkspaceInvite = async (workspace_id: string, invite_id: str
 
      try {
         createWorkspaceMember(workspace_id, 1).then((res) => {
-            return res
+            console.log(res)
         }).catch((err) => console.warn('Error when joining workspace', err))
 
      }
