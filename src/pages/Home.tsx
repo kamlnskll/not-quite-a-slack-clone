@@ -67,9 +67,12 @@ useEffect(() => {
                 {userWorkspaces?.map((workspace) => (
                   <WorkspaceCard workspace={workspace} />
                 ))}
+                  <Title size='sm' >Direct Messages</Title>
+
                   <Stack justify="flex-end" h={400}>
                     <Button color='yellow' type='button' w={100} onClick={() => logOut()}>Log Out</Button>
                   </Stack>
+
               </AppShell.Navbar>
               <AppShell.Main>
                   <Group justify='flex-end'>

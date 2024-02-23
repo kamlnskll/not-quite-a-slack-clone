@@ -14,10 +14,12 @@ const ChatBubble = ({message}: Props) => {
 const [senderData, setSenderData] = useState<any>({})
 
   useEffect(() => {
-fetchProfileData(message.sender_id).then((res: any) => 
-setSenderData(res)
-)
-    
+if(message.sender_id !== auth?.currentUser?.uid){
+  fetchProfileData(message.sender_id).then((res: any) =>
+  setSenderData(res)
+  )
+}
+
   }, [])
 
   return (
@@ -31,6 +33,7 @@ setSenderData(res)
       </Paper>
       </Flex>
     ) : (
+      // Use the profile data stuff here. 
       <Flex justify={'left'}>
       <Paper  bg={'green'} withBorder={true} my='xs' w='30%' py='4px'>
         <Text color='dark' ml='sm'>{message.messageBody}</Text>

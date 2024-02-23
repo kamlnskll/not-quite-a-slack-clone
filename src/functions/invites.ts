@@ -76,6 +76,14 @@ export const acceptWorkspaceInvite = async (workspace_id: string, invite_id: str
         return 
      }
 
+    
+     const inviteRef = doc(workspaceInvitesCollection, invite_id)
+
+    //  if(workspaceMembersCollection){
+    //     console.log(`You're already a member of this Workspace.`)
+    //     return
+    //  }
+
 // User type 1 = Regular user
 // User type 2 = Admin user
 // User type 3 = Workspace creatore
@@ -83,6 +91,7 @@ export const acceptWorkspaceInvite = async (workspace_id: string, invite_id: str
      try {
         createWorkspaceMember(workspace_id, 1).then((res) => {
             console.log(res)
+            deleteDoc(inviteRef).then((res) => {console.log(res)}).catch((err) => console.warn('Error when deleting invite', err))
         }).catch((err) => console.warn('Error when joining workspace', err))
 
      }
